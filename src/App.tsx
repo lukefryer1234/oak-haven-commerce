@@ -3,8 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Box, CircularProgress } from '@mui/material';
 
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+import Layout from './components/layout/Layout'; // Import Layout
 import LoadingSpinner from './components/common/LoadingSpinner';
 import PostcodeCheck from './components/common/PostcodeCheck';
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -16,7 +15,7 @@ import { UserRole } from './types';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage'));
-
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage')); // Added product detail page
 // Product configuration pages
 const GarageConfigPage = lazy(() => import('./pages/products/GarageConfigPage'));
 const GazeboConfigPage = lazy(() => import('./pages/products/GazeboConfigPage'));
@@ -56,7 +55,10 @@ const AdminDashboardPage = lazy(() => import('./pages/admin/DashboardPage'));
 const AdminOrdersPage = lazy(() => import('./pages/admin/OrdersPage'));
 const AdminOrderDetailsPage = lazy(() => import('./pages/admin/OrderDetailsPage'));
 const AdminProductsPage = lazy(() => import('./pages/admin/ProductsPage'));
+const AddProductPage = lazy(() => import('./pages/admin/AddProductPage')); // Add import
+const EditProductPage = lazy(() => import('./pages/admin/EditProductPage')); // Add import (will create later)
 const AdminPricesPage = lazy(() => import('./pages/admin/PricesPage'));
+const ProductOptionsPage = lazy(() => import('./pages/admin/ProductOptionsPage'));
 const AdminUsersPage = lazy(() => import('./pages/admin/UsersPage'));
 const AdminSettingsPage = lazy(() => import('./pages/admin/SettingsPage'));
 const AdminEnquiriesPage = lazy(() => import('./pages/admin/EnquiriesPage'));
@@ -72,31 +74,28 @@ const App: React.FC = () => {
 
   // Check if user is logged in on app start
   useEffect(() => {
-    // This would typically be handled by an auth listener or action
-    // dispatch(checkUserAuth());
+    // Check Firebase auth state on app start
+    dispatch(checkUserAuth());
   }, [dispatch]);
-
   // Show loading spinner while auth state is being checked
   if (loading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header />
+    <Layout> {/* Wrap content with Layout */}
+      {/* Postcode check modal (might need repositioning depending on desired behavior) */}
+      {showPostcodeCheck && <PostcodeCheck />} 
       
-      {/* Postcode check modal */}
-      {showPostcodeCheck && <PostcodeCheck />}
-      
-      <Container component="main" sx={{ flexGrow: 1, py: 4 }}>
-        <Suspense fallback={<CircularProgress />}>
-          <Routes>
+      <Suspense fallback={<CircularProgress />}>
+        <Routes>
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             
             {/* Product browsing routes */}
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:category" element={<ProductCategoryPage />} />
+            <Route path="/products/detail/:productId" element={<ProductDetailPage />} /> {/* Added product detail route */}
             
             {/* Product configuration routes */}
             <Route path="/products/garage/configure" element={<GarageConfigPage />} />
@@ -231,11 +230,36 @@ const App: React.FC = () => {
                 </AdminRoute>
               } 
             />
+            {/* Add/Edit Product Routes */}
+            <Route 
+              path="/admin/products/add" 
+              element={
+                <AdminRoute>
+                  <AddProductPage />
+                </AdminRoute>
+              } 
+            />
+            <Route 
+              path="/admin/products/edit/:productId" 
+              element={
+                <AdminRoute>
+                  <EditProductPage />
+                </AdminRoute>
+              } 
+            />
             <Route 
               path="/admin/prices" 
               element={
                 <AdminRoute>
                   <AdminPricesPage />
+                </AdminRoute>
+              } 
+            />
+            <Route 
+              path="/admin/prices/options/:productId" 
+              element={
+                <AdminRoute>
+                  <ProductOptionsPage />
                 </AdminRoute>
               } 
             />
@@ -269,10 +293,7 @@ const App: React.FC = () => {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-      </Container>
-      
-      <Footer />
-    </Box>
+    </Layout> // Close Layout
   );
 };
 
