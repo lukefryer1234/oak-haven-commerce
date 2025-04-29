@@ -108,4 +108,8 @@ const theme = createTheme({
       fontWeight: 500,
       marginBottom: '0.625rem',
     },
+    // Add other typography settings as needed (h5, h6, body1, body2, etc.)
+  } // Close typography object
+}); // Close createTheme object and call
 
+export default theme;

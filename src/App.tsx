@@ -3,68 +3,68 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Box, CircularProgress } from '@mui/material';
 
-import Layout from './components/layout/Layout'; // Import Layout
-import LoadingSpinner from './components/common/LoadingSpinner';
-import PostcodeCheck from './components/common/PostcodeCheck';
-import ProtectedRoute from './components/common/ProtectedRoute';
-import AdminRoute from './components/common/AdminRoute';
-import { RootState } from './store';
-import { UserRole } from './types';
+import Layout from '@/components/layout/Layout'; // Import Layout
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import PostcodeCheck from '@/components/common/PostcodeCheck';
+import ProtectedRoute from '@/components/common/ProtectedRoute';
+import AdminRoute from '@/components/common/AdminRoute';
+import { RootState } from '@/store';
+import { UserRole } from '@/types';
 
 // Lazy load pages for better performance
-const HomePage = lazy(() => import('./pages/HomePage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage'));
-const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage')); // Added product detail page
+const HomePage = lazy(() => import('@/pages/HomePage.tsx'));
+const ProductsPage = lazy(() => import('@/pages/ProductsPage.tsx'));
+const ProductCategoryPage = lazy(() => import('@/pages/ProductCategoryPage.tsx'));
+const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage.tsx')); // Added product detail page
 // Product configuration pages
-const GarageConfigPage = lazy(() => import('./pages/products/GarageConfigPage'));
-const GazeboConfigPage = lazy(() => import('./pages/products/GazeboConfigPage'));
-const PorchConfigPage = lazy(() => import('./pages/products/PorchConfigPage'));
-const OakBeamConfigPage = lazy(() => import('./pages/products/OakBeamConfigPage'));
-const OakFlooringConfigPage = lazy(() => import('./pages/products/OakFlooringConfigPage'));
+const GarageConfigPage = lazy(() => import('@/pages/products/GarageConfigPage.tsx'));
+const GazeboConfigPage = lazy(() => import('@/pages/products/GazeboConfigPage.tsx'));
+const PorchConfigPage = lazy(() => import('@/pages/products/PorchConfigPage.tsx'));
+const OakBeamConfigPage = lazy(() => import('@/pages/products/OakBeamConfigPage.tsx'));
+const OakFlooringConfigPage = lazy(() => import('@/pages/products/OakFlooringConfigPage.tsx'));
 
 // Authentication pages
-const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
-const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
-const ForgotPasswordPage = lazy(() => import('./pages/auth/ForgotPasswordPage'));
-const ResetPasswordPage = lazy(() => import('./pages/auth/ResetPasswordPage'));
+const LoginPage = lazy(() => import('@/pages/auth/LoginPage.tsx'));
+const RegisterPage = lazy(() => import('@/pages/auth/RegisterPage.tsx'));
+const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage.tsx'));
+const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage.tsx'));
 
 // Shopping cart and checkout pages
-const CartPage = lazy(() => import('./pages/cart/CartPage'));
-const CheckoutPage = lazy(() => import('./pages/checkout/CheckoutPage'));
-const PaymentPage = lazy(() => import('./pages/checkout/PaymentPage'));
-const OrderConfirmationPage = lazy(() => import('./pages/checkout/OrderConfirmationPage'));
+const CartPage = lazy(() => import('@/pages/cart/CartPage.tsx'));
+const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage.tsx'));
+const PaymentPage = lazy(() => import('@/pages/checkout/PaymentPage.tsx'));
+const OrderConfirmationPage = lazy(() => import('@/pages/checkout/OrderConfirmationPage.tsx'));
 
 // User account pages
-const AccountPage = lazy(() => import('./pages/account/AccountPage'));
-const OrderHistoryPage = lazy(() => import('./pages/account/OrderHistoryPage'));
-const OrderDetailsPage = lazy(() => import('./pages/account/OrderDetailsPage'));
-const AddressesPage = lazy(() => import('./pages/account/AddressesPage'));
-const ProfilePage = lazy(() => import('./pages/account/ProfilePage'));
+const AccountPage = lazy(() => import('@/pages/account/AccountPage.tsx'));
+const OrderHistoryPage = lazy(() => import('@/pages/account/OrderHistoryPage.tsx'));
+const OrderDetailsPage = lazy(() => import('@/pages/account/OrderDetailsPage.tsx'));
+const AddressesPage = lazy(() => import('@/pages/account/AddressesPage.tsx'));
+const ProfilePage = lazy(() => import('@/pages/account/ProfilePage.tsx'));
 
 // Information pages
-const GalleryPage = lazy(() => import('./pages/info/GalleryPage'));
-const MaterialsPage = lazy(() => import('./pages/info/MaterialsPage'));
-const FAQPage = lazy(() => import('./pages/info/FAQPage'));
-const ContactPage = lazy(() => import('./pages/info/ContactPage'));
-const DeliveryInfoPage = lazy(() => import('./pages/info/DeliveryInfoPage'));
-const CustomEnquiryPage = lazy(() => import('./pages/info/CustomEnquiryPage'));
+const GalleryPage = lazy(() => import('@/pages/info/GalleryPage.tsx'));
+const MaterialsPage = lazy(() => import('@/pages/info/MaterialsPage.tsx'));
+const FAQPage = lazy(() => import('@/pages/info/FAQPage.tsx'));
+const ContactPage = lazy(() => import('@/pages/info/ContactPage.tsx'));
+const DeliveryInfoPage = lazy(() => import('@/pages/info/DeliveryInfoPage.tsx'));
+const CustomEnquiryPage = lazy(() => import('@/pages/info/CustomEnquiryPage.tsx'));
 
 // Admin pages
-const AdminDashboardPage = lazy(() => import('./pages/admin/DashboardPage'));
-const AdminOrdersPage = lazy(() => import('./pages/admin/OrdersPage'));
-const AdminOrderDetailsPage = lazy(() => import('./pages/admin/OrderDetailsPage'));
-const AdminProductsPage = lazy(() => import('./pages/admin/ProductsPage'));
-const AddProductPage = lazy(() => import('./pages/admin/AddProductPage')); // Add import
-const EditProductPage = lazy(() => import('./pages/admin/EditProductPage')); // Add import (will create later)
-const AdminPricesPage = lazy(() => import('./pages/admin/PricesPage'));
-const ProductOptionsPage = lazy(() => import('./pages/admin/ProductOptionsPage'));
-const AdminUsersPage = lazy(() => import('./pages/admin/UsersPage'));
-const AdminSettingsPage = lazy(() => import('./pages/admin/SettingsPage'));
-const AdminEnquiriesPage = lazy(() => import('./pages/admin/EnquiriesPage'));
+const AdminDashboardPage = lazy(() => import('@/pages/admin/DashboardPage.tsx'));
+const AdminOrdersPage = lazy(() => import('@/pages/admin/OrdersPage.tsx'));
+const AdminOrderDetailsPage = lazy(() => import('@/pages/admin/OrderDetailsPage.tsx'));
+const AdminProductsPage = lazy(() => import('@/pages/admin/ProductsPage.tsx'));
+const AddProductPage = lazy(() => import('@/pages/admin/AddProductPage.tsx')); // Add import
+const EditProductPage = lazy(() => import('@/pages/admin/EditProductPage.tsx')); // Add import (will create later)
+const AdminPricesPage = lazy(() => import('@/pages/admin/PricesPage.tsx'));
+const ProductOptionsPage = lazy(() => import('@/pages/admin/ProductOptionsPage.tsx'));
+const AdminUsersPage = lazy(() => import('@/pages/admin/UsersPage.tsx'));
+const AdminSettingsPage = lazy(() => import('@/pages/admin/SettingsPage.tsx'));
+const AdminEnquiriesPage = lazy(() => import('@/pages/admin/EnquiriesPage.tsx'));
 
 // Error and utility pages
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage.tsx'));
 
 const App: React.FC = () => {
   const { user, loading } = useSelector((state: RootState) => state.auth);
