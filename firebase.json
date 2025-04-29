@@ -3,8 +3,27 @@
     "public": "public",
     "ignore": [
       "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+      ".firebaserc",
+      ".*",
+      "*.md",
+      "*.log",
+      "node_modules/**",
+      "src/**",
+      "test/**",
+      "vite.config.ts",
+      "tsconfig.json",
+      "package.json",
+      "package-lock.json",
+      "dataconnect/**",
+      "assessment_report.md",
+      "oak_haven_assessment.md"
+    ],
+    // Ensure SPA behavior for client-side routing
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   },
   "firestore": {
