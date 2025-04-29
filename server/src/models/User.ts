@@ -10,7 +10,7 @@ interface UserAttributes {
   lastName: string;
   authProvider?: 'local' | 'google' | 'apple';
   authProviderId?: string;
-  role: 'customer' | 'admin';
+  role: 'user' | 'admin';
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -25,7 +25,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
   public lastName!: string;
   public authProvider!: 'local' | 'google' | 'apple';
   public authProviderId!: string;
-  public role!: 'customer' | 'admin';
+  public role!: 'user' | 'admin';
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -52,7 +52,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: true, // Allow null for social auth users
+      allowNull: false,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -71,8 +71,8 @@ User.init(
       allowNull: true,
     },
     role: {
-      type: DataTypes.ENUM('customer', 'admin'),
-      defaultValue: 'customer',
+      type: DataTypes.ENUM('user', 'admin'),
+      defaultValue: 'user',
     },
   },
   {
