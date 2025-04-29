@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "oak-haven-commerce"
+location: "europe-north1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "postgres"
+      cloudSql:
+        instanceId: "oak-haven-commerce-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

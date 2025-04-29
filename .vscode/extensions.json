@@ -1,0 +1,53 @@
+{
+  "recommendations": [
+    // Firebase integration and tooling
+    "toba.vsfire",                  // Firebase Rules syntax highlighting
+    "dineug.firebase-explorer",     // Firebase database explorer
+    "angular-snippets.firebase",    // Firebase snippets
+    "dineug.vscode-cloud-firestore", // Cloud Firestore tools
+    
+    // JavaScript/TypeScript development
+    "dbaeumer.vscode-eslint",       // ESLint integration
+    "esbenp.prettier-vscode",       // Prettier code formatter
+    "ms-vscode.vscode-typescript-next", // TypeScript support
+    "christian-kohler.path-intellisense", // Path autocompletion
+    "christian-kohler.npm-intellisense", // npm package autocompletion
+    "visualstudioexptteam.vscodeintellicode", // AI-assisted development
+    
+    // Git and GitHub integration
+    "github.vscode-pull-request-github", // GitHub PR and Issues
+    "eamodio.gitlens",               // Git supercharged
+    "mhutchie.git-graph",            // Git graph visualization
+    "donjayamanne.githistory",       // Git history viewer
+    
+    // Web development tools
+    "ritwickdey.liveserver",         // Live server for HTML/CSS/JS
+    "ms-vscode.live-server",         // Microsoft's live server
+    "formulahendry.auto-rename-tag", // Auto rename paired HTML tags
+    "formulahendry.auto-close-tag",  // Auto close HTML tags
+    "vincaslt.highlight-matching-tag", // Highlight matching HTML tags
+    "bradlc.vscode-tailwindcss",     // Tailwind CSS support
+    "csstools.postcss",              // PostCSS support
+    
+    // JSON and YAML support
+    "redhat.vscode-yaml",            // YAML language support
+    "eriklynd.json-tools",           // JSON tools
+    
+    // Terminal and shell
+    "tyriar.terminal-tabs",          // Terminal tabs
+    "timonwong.shellcheck",          // Shell script linting
+    
+    // Testing and debugging
+    "ryanluker.vscode-coverage-gutters", // Code coverage visualization
+    "ms-vscode.js-debug",            // JavaScript debugger
+    
+    // Productivity and utilities
+    "ms-vsliveshare.vsliveshare",    // Live collaboration
+    "streetsidesoftware.code-spell-checker", // Spell checker
+    "mikestead.dotenv",              // .env file support
+    "naumovs.color-highlight",       // Color highlight in code
+    "wayou.vscode-todo-highlight",   // TODO/FIXME highlighting
+    "gruntfuggly.todo-tree"          // TODO tree view
+  ]
+}
+

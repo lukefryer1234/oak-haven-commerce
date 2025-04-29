@@ -1,0 +1,95 @@
+{
+  // File associations
+  "files.associations": {
+    "*.rules": "javascript",
+    "firebase.json": "jsonc",
+    ".firebaserc": "jsonc",
+    "firestore.rules": "javascript",
+    "firestore.indexes.json": "jsonc",
+    "database.rules.json": "jsonc",
+    "remoteconfig.template.json": "jsonc",
+    "*.yaml": "yaml",
+    "*.yml": "yaml",
+    "dataconnect/*.yaml": "yaml"
+  },
+
+  // Editor configurations
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.rulers": [100],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  
+  // JavaScript/TypeScript settings
+  "javascript.format.enable": true,
+  "javascript.validate.enable": true,
+  "typescript.format.enable": true,
+  "typescript.validate.enable": true,
+  
+  // JSON settings
+  "json.format.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  
+  // Git and GitHub integration
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "githubPullRequests.createOnPublishBranch": "ask",
+  "githubPullRequests.pullBranchName": "never",
+  "diffEditor.ignoreTrimWhitespace": false,
+  
+  // Firebase specific settings
+  "firebase.features.deployOnSave": false,  // Disabled by default, enable if needed
+  "firebase.recentEmulators": [
+    "auth",
+    "firestore",
+    "hosting",
+    "functions",
+    "database"
+  ],
+  
+  // Terminal settings
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  
+  // Explorer settings
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": true,
+  
+  // Search settings
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.log": true,
+    "**/*.log*": true,
+    "**/dist": true,
+    "**/.firebase": true
+  },
+  
+  // File settings
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.firebase": true,
+    "**/dist": false,
+    "**/coverage": true
+  },
+  
+  // Telemetry settings (optional)
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false
+}
+

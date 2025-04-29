@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7D4F2A" />
+    <meta
+      name="description"
+      content="Oak Haven Commerce - High Quality Oak Products"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <title>Oak Haven Commerce</title>
+
+    <!-- Firebase Initialization Scripts - Managed by Firebase Hosting -->
+    <script defer src="/__/firebase/11.6.1/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/11.6.1/firebase-performance-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- Vite entry point -->
+    <script type="module" src="/src/index.tsx"></script>
+    
+    <!-- Firebase SDK Loading Message (Optional) -->
+    <p id="load" style="display: none;">Firebase SDK Loading&hellip;</p>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        if (!loadEl) return;
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 'database', 'firestore', 'functions', 'messaging', 
+            'storage', 'analytics', 'remoteConfig', 'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
